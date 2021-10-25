@@ -1,17 +1,14 @@
 package br.com.example.domain.model;
 
-import java.time.LocalDate;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
+import br.com.example.domain.model.enumeration.PhoneType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,24 +19,14 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Person {
+public class Phone {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	@Enumerated(EnumType.ORDINAL)
 	@Column(nullable = false)
-	private String firtName;
-	
+	private PhoneType type;
 	@Column(nullable = false)
-	private String lastName;
-
-	@Column(unique = true, nullable = false)
-	private String cpf;
-	
-	@Column(nullable = false)
-	private LocalDate birthDate;
-	
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
-	private Set<Phone> phones;
+	private String number;
 }
