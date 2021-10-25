@@ -1,5 +1,9 @@
 package br.com.example.domain.repositorie;
 
-public class PersonRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import br.com.example.domain.model.Person;
+
+public interface PersonRepository extends CrudRepository<Person, Long>{
 
 }
