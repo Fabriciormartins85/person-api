@@ -1,5 +1,7 @@
 package br.com.example.domain.resource;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,10 @@ public class PersonResource {
 	@GetMapping(path = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<PersonDTO> personById(@PathVariable("id") Long id) {
 		return ResponseEntity.ok(service.findById(id));
+	}
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<PersonDTO>> allPersons() {
+		return ResponseEntity.ok(service.findAll());
 	}
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
