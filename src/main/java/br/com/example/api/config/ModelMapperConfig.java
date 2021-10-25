@@ -1,0 +1,23 @@
+package br.com.example.api.config;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+
+@Configuration
+public class ModelMapperConfig {
+
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
+
+}
+@Configuration
+class PersistenceHibernateConfig{
+	   @Bean
+	   public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
+	      return new PersistenceExceptionTranslationPostProcessor();
+	   }
+	}
