@@ -14,19 +14,26 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PersonDTO {
 
 	private Long id;
 
 	@NotEmpty(message = "First name must not be blank")
 	@Size(min = 2, max = 100, message = "First name length is minimum 2 to 100 characters")
-	private String firtName;
+	private String firstName;
 
 	@NotEmpty(message = "Last name must not be blank")
 	@Size(min = 2, max = 100, message = "Last name length is minimum 2 to 100 characters")
@@ -42,5 +49,7 @@ public class PersonDTO {
 
 	@Valid
 	@NotEmpty(message = "The phones must not be blank")
+	@Builder.Default
+	@JsonIdentityReference
 	private Set<PhoneDTO> phones = new HashSet<>();
 }

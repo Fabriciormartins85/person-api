@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +23,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "person")
 public class Person {
 
 	@Id
@@ -29,7 +31,7 @@ public class Person {
 	private Long id;
 	
 	@Column(nullable = false)
-	private String firtName;
+	private String firstName;
 	
 	@Column(nullable = false)
 	private String lastName;
