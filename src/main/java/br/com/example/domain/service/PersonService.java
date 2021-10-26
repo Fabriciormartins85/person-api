@@ -42,4 +42,19 @@ public class PersonService {
 		return personsDTO;
 	}
 
+	public PersonDTO update(PersonDTO personDTO) throws NotFoundException {
+		exists(personDTO.getId());
+		return mapper.map(repo.save(mapper.map(personDTO, Person.class)), PersonDTO.class);
+	}
+
+	public void delete(PersonDTO personDTO) throws NotFoundException {
+		exists(personDTO.getId());
+		repo.deleteById(personDTO.getId());
+	}
+
+	private void exists(Long id) {
+		if (id == null || !repo.existsById(id)) {
+			throw new NotFoundException("Person Not Found");
+		}
+	}
 }
